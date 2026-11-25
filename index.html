@@ -1,0 +1,1993 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- EDITAR: Título de la pestaña del navegador -->
+    <title>Bastión Digital | Consultoría Digital, Diseño y Desarrollo Web y Gobernanza</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Plus Jakarta Sans (interfaz y lectura corporativa) y Newsreader (citas ejecutivas) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        surface: '#FFFFFF',
+                        softSurface: '#F6F8FB',
+                        mutedSurface: '#EDF1F6',
+                        navy: '#0B192C',
+                        navyDark: '#060E1A',
+                        slateCorp: '#1a6d99',
+                        bodyGray: '#475569',
+                        corpBlue: '#1D4ED8',
+                        corpBlueHover: '#1E40AF',
+                        brass: '#B48A4E',
+                        hairline: '#E2E8F0'
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+                        serif: ['"Newsreader"', 'Georgia', 'serif'],
+                    },
+                    boxShadow: {
+                        'corp': '0 12px 32px -12px rgba(11, 25, 44, 0.09)',
+                        'corp-lg': '0 24px 50px -16px rgba(11, 25, 44, 0.18)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Elevación suave y sobria al pasar el cursor o enfocar */
+        .triada-card {
+            transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .triada-card:hover {
+            transform: translateY(-3px);
+        }
+
+        /* Zoom sutil en fotografías dentro de tarjetas */
+        .triada-photo {
+            transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .triada-card:hover .triada-photo {
+            transform: scale(1.03);
+        }
+
+        /* Carrusel continuo de empresas de referencia */
+        @keyframes bastionMarquee {
+            0% {
+                transform: translate3d(0, 0, 0);
+            }
+            100% {
+                transform: translate3d(-50%, 0, 0);
+            }
+        }
+.partner-marquee-viewport {
+    overflow: hidden;
+}
+
+.partner-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: bastionMarquee 38s linear infinite;
+    will-change: transform;
+}
+
+.partner-marquee-viewport:hover .partner-marquee-track,
+.partner-marquee-viewport:focus-within .partner-marquee-track,
+.partner-marquee-track.is-paused {
+    animation-play-state: paused;
+}
+
+        @media (prefers-reduced-motion: reduce) {
+            .partner-marquee-track {
+                animation: none;
+                flex-wrap: wrap;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body class="bg-surface text-navy font-sans antialiased selection:bg-corpBlue/15 selection:text-corpBlue overflow-x-hidden">
+
+    <!-- ==================== 1. CABECERA FIJA CORPORATIVA ==================== -->
+    <header class="sticky top-0 left-0 right-0 z-40 bg-surface/95 backdrop-blur-md border-b border-hairline">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+            <div class="flex items-center justify-between h-20 gap-4">
+
+                <!-- Logotipo Corporativo Sobrio -->
+                <a href="#inicio" class="flex items-center gap-3.5 group focus:outline-none shrink-0">
+                    <div class="w-10 h-10 rounded-md bg-navy flex items-center justify-center text-surface transition-colors group-hover:bg-corpBlue">
+                        <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true">
+                            <rect x="3" y="3" width="8" height="18"></rect>
+                            <rect x="14" y="3" width="7" height="10"></rect>
+                            <line x1="14" y1="17" x2="21" y2="17"></line>
+                            <line x1="14" y1="21" x2="21" y2="21"></line>
+                        </svg>
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-bold text-base sm:text-lg tracking-tight text-navy leading-none">BASTIÓN DIGITAL</span>
+                        <span class="text-[11px] font-medium uppercase tracking-[0.14em] text-slateCorp mt-1">Consultoría Digital · Diseño y Desarrollo Web</span>
+                    </div>
+                </a>
+
+                <!-- Navegación por Secciones (Escritorio) -->
+                <nav class="hidden lg:flex items-center gap-7" aria-label="Navegación principal">
+                    <a href="#impacto" class="text-sm font-medium text-slateCorp hover:text-navy transition-colors">Impacto</a>
+                    <a href="#sectores" class="text-sm font-medium text-slateCorp hover:text-navy transition-colors">Sectores</a>
+                    <a href="#capacidades" class="text-sm font-medium text-slateCorp hover:text-navy transition-colors">Capacidades</a>
+                    <a href="#perspectivas" class="text-sm font-medium text-slateCorp hover:text-navy transition-colors">Perspectivas</a>
+                    <a href="#liderazgo" class="text-sm font-medium text-slateCorp hover:text-navy transition-colors">Liderazgo y Sedes</a>
+                </nav>
+
+                <!-- Acceso Directo a Contacto + Menú Móvil -->
+                <div class="flex items-center gap-3 shrink-0">
+                    <a href="#contacto" class="hidden sm:inline-flex items-center gap-2 px-4 py-2.5 rounded-md bg-navy hover:bg-corpBlue text-surface text-xs font-semibold uppercase tracking-wider transition-colors">
+                        <span>Contacto</span>
+                        <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                    </a>
+
+                    <button type="button" id="mobile-menu-toggle" aria-label="Abrir menú de navegación" aria-expanded="false" class="lg:hidden p-2.5 rounded-md border border-hairline bg-softSurface text-navy hover:border-corpBlue transition-colors">
+                        <i data-lucide="menu" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Móvil -->
+        <div id="mobile-menu-panel" class="hidden lg:hidden bg-surface border-b border-hairline px-5 py-5 space-y-2 shadow-lg">
+            <a href="#impacto" class="mobile-nav-link block py-2.5 text-sm font-semibold text-navy hover:text-corpBlue border-b border-hairline/70">Impacto de Cliente</a>
+            <a href="#sectores" class="mobile-nav-link block py-2.5 text-sm font-semibold text-navy hover:text-corpBlue border-b border-hairline/70">Soluciones por Sector</a>
+            <a href="#capacidades" class="mobile-nav-link block py-2.5 text-sm font-semibold text-navy hover:text-corpBlue border-b border-hairline/70">Capacidades y Alianzas</a>
+            <a href="#perspectivas" class="mobile-nav-link block py-2.5 text-sm font-semibold text-navy hover:text-corpBlue border-b border-hairline/70">Informes y Perspectivas</a>
+            <a href="#liderazgo" class="mobile-nav-link block py-2.5 text-sm font-semibold text-navy hover:text-corpBlue border-b border-hairline/70">Liderazgo y Sedes</a>
+            <a href="#contacto" class="mobile-nav-link block py-2.5 text-sm font-semibold text-corpBlue">Solicitar reunión</a>
+        </div>
+    </header>
+
+    <!-- ==================== 2. HERO VISUAL CORPORATIVO ==================== -->
+    <section id="inicio" class="relative bg-navy text-surface border-b border-navyDark overflow-hidden">
+        <!-- Fotografía de fondo con velo editorial para máxima legibilidad -->
+        <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
+            <img
+                id="hero-bg-img"
+                src=""
+                alt="Arquitectura corporativa moderna y entorno de consultoría ejecutiva"
+                class="w-full h-full object-cover object-center opacity-35"
+            >
+            <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/70"></div>
+        </div>
+
+        <div class="relative max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-16 sm:py-24 lg:py-28">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+
+                <!-- Columna Izquierda: Titular, Subtítulo y Doble CTA -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-white/10 border border-white/15 backdrop-blur-xs">
+                        <span class="w-2 h-2 rounded-full bg-brass"></span>
+                        <span id="hero-eyebrow" class="text-xs font-semibold uppercase tracking-[0.15em] text-surface/90">
+                            Consultoría Digital · Diseño y Desarrollo Web · Datos, IA y Gobernanza
+                        </span>
+                    </div>
+
+                    <h1 id="hero-title" class="text-3xl sm:text-5xl lg:text-[3.4rem] font-bold tracking-tight leading-[1.1] text-surface">
+                        Consultoría digital y <span class="text-blue-400">diseño y desarrollo web</span> de alto impacto para empresas.
+                    </h1>
+
+                    <p id="hero-subtitle" class="text-base sm:text-lg text-surface/80 leading-relaxed max-w-2xl">
+                        Ayudamos a empresas y comités directivos a combinar consultoría digital, plataformas y sitios web corporativos de alto rendimiento, sistemas de diseño, datos e IA y gobernanza verificable.
+                    </p>
+
+                    <div class="flex flex-wrap items-center gap-4 pt-2">
+                        <a href="#contacto" class="px-6 py-3.5 rounded-md bg-corpBlue hover:bg-corpBlueHover text-surface text-sm font-semibold transition-colors inline-flex items-center gap-2 shadow-sm">
+                            <span>Solicitar reunión ejecutiva</span>
+                            <i data-lucide="calendar" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#sectores" class="px-6 py-3.5 rounded-md bg-white/10 hover:bg-white/15 border border-white/20 text-surface text-sm font-semibold transition-colors inline-flex items-center gap-2">
+                            <span>Explorar por sector</span>
+                            <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+
+                    <blockquote class="border-l-2 border-brass pl-4 pt-2 max-w-xl">
+                        <p id="hero-quote" class="font-serif italic text-base sm:text-lg text-surface/85 leading-relaxed">
+                            «Una presencia web corporativa y una arquitectura digital sólidas unen criterio estratégico, rendimiento técnico y confianza verificable.»
+                        </p>
+                    </blockquote>
+                </div>
+
+                <!-- Columna Derecha: Panel de Resumen Ejecutivo con Fotografía -->
+                <div class="lg:col-span-5">
+                    <div class="bg-surface text-navy border border-hairline rounded-xl overflow-hidden shadow-corp-lg">
+                        <div class="relative h-44 bg-mutedSurface overflow-hidden">
+                            <img
+                                id="hero-panel-img"
+                                src=""
+                                alt="Reunión de comité directivo y análisis de estrategia corporativa"
+                                class="w-full h-full object-cover object-center"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy/80 via-navy/25 to-transparent"></div>
+                            <div class="absolute bottom-3 left-5 right-5 flex items-center justify-between text-surface">
+                                <span class="text-[11px] font-bold uppercase tracking-[0.16em] text-amber-300">Resumen Ejecutivo</span>
+                                <span class="text-[11px] font-semibold px-2 py-0.5 rounded bg-white/15 backdrop-blur-xs">ISO 27001 · ENS</span>
+                            </div>
+                        </div>
+
+                        <div class="p-6 space-y-5">
+                            <div>
+                                <h2 class="text-lg font-bold text-navy">Modelo Integrado de Ejecución</h2>
+                                <p class="text-xs sm:text-sm text-bodyGray mt-1 leading-relaxed">
+                                    Integramos consultoría digital, diseño y desarrollo web a medida, datos e IA y control de riesgos en un mismo ciclo.
+                                </p>
+                            </div>
+
+                            <div class="space-y-2.5">
+                                <div class="flex items-center justify-between p-3 rounded-lg bg-softSurface border border-hairline">
+                                    <span class="text-xs sm:text-sm font-semibold text-navy">01 · Diagnóstico, UX y arquitectura</span>
+                                    <span class="text-[11px] font-bold text-corpBlue">4–6 sem.</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 rounded-lg bg-softSurface border border-hairline">
+                                    <span class="text-xs sm:text-sm font-semibold text-navy">02 · Desarrollo web, datos e IA</span>
+                                    <span class="text-[11px] font-bold text-brass">Iterativo</span>
+                                </div>
+                                <div class="flex items-center justify-between p-3 rounded-lg bg-softSurface border border-hairline">
+                                    <span class="text-xs sm:text-sm font-semibold text-navy">03 · Rendimiento, SEO técnico y gobernanza</span>
+                                    <span class="text-[11px] font-bold text-navy">Continuo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== 3. MÉTRICAS DE IMPACTO DE CLIENTE (ESTILO ACCENTURE) ==================== -->
+    <section id="impacto" class="py-20 sm:py-24 bg-softSurface border-b border-hairline">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+                <div class="space-y-2 max-w-2xl">
+                    <span class="text-xs font-bold uppercase tracking-[0.18em] text-corpBlue">Impacto Verificable</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-navy tracking-tight">Resultados medibles en entornos reales</h2>
+                    <p class="text-sm sm:text-base text-bodyGray">
+                        Indicadores agregados de programas ejecutados junto a direcciones generales, áreas de tecnología y comités de riesgo.
+                    </p>
+                </div>
+                <span class="text-xs font-medium text-slateCorp">Datos ilustrativos de referencia corporativa</span>
+            </div>
+
+            <div id="impact-metrics-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"></div>
+
+            <!-- Slider Continuo de Empresas de Referencia -->
+            <div id="empresas-referencia" class="mt-14 pt-12 border-t border-hairline space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div class="space-y-1">
+                        <span class="text-xs font-bold uppercase tracking-[0.18em] text-brass">Empresas y Referencias Corporativas</span>
+                        <h3 class="text-xl sm:text-2xl font-bold text-navy tracking-tight">Organizaciones y ecosistemas de referencia</h3>
+                    </div>
+
+                    <div class="flex items-center gap-2 self-start sm:self-auto" role="group" aria-label="Controles del slider de empresas">
+                        <button
+                            type="button"
+                            id="partner-prev-btn"
+                            aria-label="Desplazar empresas hacia la izquierda"
+                            class="p-2.5 rounded-md bg-surface hover:bg-mutedSurface border border-hairline text-navy hover:border-corpBlue transition-colors"
+                        >
+                            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                        </button>
+                        <button
+                            type="button"
+                            id="partner-toggle-btn"
+                            aria-pressed="false"
+                            aria-label="Pausar o reanudar desplazamiento automático"
+                            class="px-3.5 py-2 rounded-md bg-surface hover:bg-mutedSurface border border-hairline text-xs font-semibold text-navy hover:border-corpBlue transition-colors inline-flex items-center gap-1.5"
+                        >
+                            <i id="partner-toggle-icon" data-lucide="pause" class="w-3.5 h-3.5 text-corpBlue"></i>
+                            <span id="partner-toggle-label">Pausar</span>
+                        </button>
+                        <button
+                            type="button"
+                            id="partner-next-btn"
+                            aria-label="Desplazar empresas hacia la derecha"
+                            class="p-2.5 rounded-md bg-surface hover:bg-mutedSurface border border-hairline text-navy hover:border-corpBlue transition-colors"
+                        >
+                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+
+              <div
+    id="partner-marquee-viewport"
+    class="partner-marquee-viewport relative overflow-hidden rounded-xl bg-surface border border-hairline shadow-corp py-5"
+    tabindex="0"
+    aria-label="Carrusel de organizaciones de referencia"
+>
+    <div id="partner-marquee-track" class="partner-marquee-track"></div>
+</div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== 4. SOLUCIONES POR SECTOR E INDUSTRIA (ESTILO KPMG) ==================== -->
+    <section id="sectores" class="py-20 sm:py-28 bg-surface border-b border-hairline">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+            <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 mb-12">
+                <div class="space-y-2.5 max-w-2xl">
+                    <span class="text-xs font-bold uppercase tracking-[0.18em] text-brass">Soluciones por Industria</span>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-navy tracking-tight">Enfoque sectorial, web corporativa y operación</h2>
+                    <p class="text-sm sm:text-base text-bodyGray">
+                        Filtre por industria para revisar las prioridades regulatorias, digitales y operativas, o abra cualquier ficha para consultar el caso detallado.
+                    </p>
+                </div>
+
+                <!-- Filtros interactivos por sector -->
+                <div id="sector-filter-bar" role="tablist" aria-label="Filtrar soluciones por sector" class="flex flex-wrap gap-2"></div>
+            </div>
+
+            <div id="sector-solutions-grid" class="grid grid-cols-1 md:grid-cols-2 gap-7"></div>
+
+        </div>
+    </section>
+
+    <!-- ==================== 5. CAPACIDADES, ECOSISTEMA Y ALIANZAS (ESTILO IBM CONSULTING) ==================== -->
+    <section id="capacidades" class="py-20 sm:py-28 bg-softSurface border-b border-hairline">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 space-y-14">
+
+            <div class="max-w-3xl space-y-2.5">
+                <span class="text-xs font-bold uppercase tracking-[0.18em] text-corpBlue">Capacidades y Ecosistema</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-navy tracking-tight">Arquitectura modular y alianzas tecnológicas</h2>
+                <p class="text-sm sm:text-base text-bodyGray leading-relaxed">
+                    Seleccione una práctica para inspeccionar su enfoque arquitectónico, entregables clave y ecosistemas tecnológicos asociados.
+                </p>
+            </div>
+
+            <!-- Pestañas interactivas de capacidades -->
+            <div class="bg-surface border border-hairline rounded-xl shadow-corp overflow-hidden">
+                <div id="capabilities-tabs" role="tablist" aria-label="Capacidades de consultoría" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 bg-mutedSurface border-b border-hairline"></div>
+                <div id="capabilities-panel" class="p-6 sm:p-10"></div>
+            </div>
+
+            <!-- Ecosistema de Alianzas Tecnológicas -->
+            <div class="space-y-6">
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                    <h3 class="text-lg sm:text-xl font-bold text-navy">Ecosistema de Alianzas y Plataformas</h3>
+                    <span class="text-xs text-slateCorp">Integración neutral y certificada según la arquitectura del cliente</span>
+                </div>
+                <div id="alliances-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5"></div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ==================== 6. INFORMES Y PERSPECTIVAS (ENFOQUE EDITORIAL) ==================== -->
+    <section id="perspectivas" class="py-20 sm:py-28 bg-surface border-b border-hairline">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+            <div class="max-w-2xl mb-12 space-y-2.5">
+                <span class="text-xs font-bold uppercase tracking-[0.18em] text-brass">Informes y Perspectivas</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-navy tracking-tight">Análisis ejecutivo y notas de práctica</h2>
+                <p class="text-sm sm:text-base text-bodyGray">
+                    Publicaciones sobre adopción responsable de IA, gobierno del dato, resiliencia operativa y disciplina de inversión.
+                </p>
+            </div>
+
+            <div id="insights-grid" class="grid grid-cols-1 md:grid-cols-3 gap-7"></div>
+
+        </div>
+    </section>
+
+    <!-- ==================== 7. LIDERAZGO, SEDES Y CONTACTO CORPORATIVO ==================== -->
+    <section id="liderazgo" class="py-20 sm:py-28 bg-softSurface border-b border-hairline">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 space-y-16">
+
+            <div class="max-w-3xl space-y-2.5">
+                <span class="text-xs font-bold uppercase tracking-[0.18em] text-corpBlue">Liderazgo y Sedes</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-navy tracking-tight">Socios responsables y presencia en Madrid y Londres</h2>
+                <p class="text-sm sm:text-base text-bodyGray">
+                    Equipos directivos implicados de forma continua en cada mandato y sedes operativas conectadas con los principales centros financieros y tecnológicos.
+                </p>
+            </div>
+
+            <!-- Equipo Directivo con Fotografía Editorial -->
+            <div id="leadership-grid" class="grid grid-cols-1 md:grid-cols-3 gap-7"></div>
+
+            <!-- Sedes Madrid y Londres con Fotografía -->
+            <div id="offices-grid" class="grid grid-cols-1 md:grid-cols-2 gap-7"></div>
+
+        </div>
+    </section>
+
+    <!-- Formulario Corporativo Funcional -->
+    <section id="contacto" class="py-20 sm:py-28 bg-surface">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="space-y-2.5">
+                        <span class="text-xs font-bold uppercase tracking-[0.18em] text-corpBlue">Contacto Directo</span>
+                        <h2 class="text-3xl sm:text-4xl font-bold text-navy tracking-tight">
+                            Conversemos sobre su próxima iniciativa
+                        </h2>
+                        <p class="text-sm sm:text-base text-bodyGray leading-relaxed">
+                            Comparta el contexto de su organización, el sector o el área de capacidad que desea abordar. Responderemos en un plazo máximo de 24 horas hábiles.
+                        </p>
+                    </div>
+
+                    <div class="p-4 rounded-lg bg-softSurface border border-hairline flex items-center justify-between gap-3">
+                        <div class="min-w-0">
+                            <span class="block text-[11px] font-bold uppercase tracking-wider text-slateCorp">Correo Corporativo</span>
+                            <!-- EDITAR: Correo electrónico corporativo -->
+                            <span id="contact-email-label" class="text-sm font-semibold text-navy truncate block mt-0.5">contacto@bastiondigital.es</span>
+                        </div>
+                        <button type="button" id="copy-email-btn" class="px-3 py-2 rounded bg-surface hover:bg-mutedSurface border border-hairline text-xs font-semibold text-corpBlue shrink-0 transition-colors inline-flex items-center gap-1.5">
+                            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+                            <span id="copy-email-text">Copiar</span>
+                        </button>
+                    </div>
+
+                    <div class="p-5 rounded-xl bg-softSurface border border-hairline space-y-2 text-xs text-bodyGray">
+                        <div class="font-bold uppercase tracking-wider text-navy">Confidencialidad y Gobernanza</div>
+                        <p class="leading-relaxed">
+                            Todas las consultas sobre consultoría digital, proyectos de diseño y desarrollo web o arquitectura tecnológica se tratan bajo confidencialidad profesional. Si requiere acuerdo de confidencialidad previo (NDA), indíquelo en el mensaje.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7">
+                    <form id="corporate-form" novalidate class="bg-softSurface border border-hairline rounded-xl p-6 sm:p-10 space-y-6 shadow-corp">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="f-name" class="block text-xs font-bold uppercase tracking-wider text-navy mb-2">
+                                    Nombre y apellidos *
+                                </label>
+                                <input type="text" id="f-name" required placeholder="Ej. Laura Castellanos"
+                                    class="w-full px-4 py-3 rounded-md bg-surface border border-hairline text-sm text-navy placeholder-slateCorp/50 focus:outline-none focus:border-corpBlue transition-colors">
+                            </div>
+                            <div>
+                                <label for="f-org" class="block text-xs font-bold uppercase tracking-wider text-navy mb-2">
+                                    Organización *
+                                </label>
+                                <input type="text" id="f-org" required placeholder="Nombre de la empresa o institución"
+                                    class="w-full px-4 py-3 rounded-md bg-surface border border-hairline text-sm text-navy placeholder-slateCorp/50 focus:outline-none focus:border-corpBlue transition-colors">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="f-email" class="block text-xs font-bold uppercase tracking-wider text-navy mb-2">
+                                    Correo profesional *
+                                </label>
+                                <input type="email" id="f-email" required placeholder="l.castellanos@bastiondigital.es"
+                                    class="w-full px-4 py-3 rounded-md bg-surface border border-hairline text-sm text-navy placeholder-slateCorp/50 focus:outline-none focus:border-corpBlue transition-colors">
+                            </div>
+                            <div>
+                                <label for="f-area" class="block text-xs font-bold uppercase tracking-wider text-navy mb-2">
+                                    Área de interés
+                                </label>
+                                <select id="f-area" class="w-full px-4 py-3 rounded-md bg-surface border border-hairline text-sm text-navy focus:outline-none focus:border-corpBlue transition-colors">
+                                    <option value="Diseño y Desarrollo Web Corporativo">Diseño y Desarrollo Web Corporativo</option>
+                                    <option value="Consultoría Digital y Transformación">Consultoría Digital y Transformación</option>
+                                    <option value="Datos e IA Enterprise">Datos e IA Enterprise</option>
+                                    <option value="Ciberseguridad y Gobernanza">Ciberseguridad y Gobernanza</option>
+                                    <option value="Soluciones por Sector">Soluciones por Sector</option>
+                                    <option value="Informes y Colaboración">Informes y Colaboración</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="f-message" class="block text-xs font-bold uppercase tracking-wider text-navy mb-2">
+                                Contexto y objetivos *
+                            </label>
+                            <textarea id="f-message" rows="4" required placeholder="Describa brevemente el reto, horizonte temporal o tipo de colaboración..."
+                                class="w-full px-4 py-3 rounded-md bg-surface border border-hairline text-sm text-navy placeholder-slateCorp/50 focus:outline-none focus:border-corpBlue transition-colors resize-none"></textarea>
+                        </div>
+
+                        <div id="form-validation-error" class="hidden p-3.5 rounded-md bg-red-50 border border-red-200 text-xs font-medium text-red-800">
+                            Por favor, complete todos los campos obligatorios (*) e introduzca un correo electrónico válido.
+                        </div>
+
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-1">
+                            <span class="text-xs text-slateCorp">Respuesta ejecutiva en menos de 24 horas hábiles.</span>
+                            <button type="submit" class="px-7 py-3.5 rounded-md bg-corpBlue hover:bg-corpBlueHover text-surface text-xs font-semibold uppercase tracking-wider transition-colors">
+                                Enviar consulta
+                            </button>
+                        </div>
+
+                        <div id="form-confirmation-box" class="hidden p-4 rounded-md bg-emerald-50 border border-emerald-200 text-sm text-emerald-950 flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="w-5 h-5 text-emerald-700 shrink-0 mt-0.5"></i>
+                            <div>
+                                <p id="form-confirmation-title" class="font-bold">Consulta registrada correctamente.</p>
+                                <p id="form-confirmation-detail" class="text-xs text-emerald-800 mt-0.5"></p>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== FOOTER CORPORATIVO ==================== -->
+    <footer class="bg-navy text-surface/85 border-t border-navyDark">
+        <div class="max-w-7xl mx-auto px-5 sm:px-8 lg:px-12 py-14">
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-white/10">
+
+                <div class="md:col-span-5 space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded bg-white/10 flex items-center justify-center font-bold text-xs tracking-wider text-surface">
+                            BD
+                        </div>
+                        <span class="font-bold text-base tracking-tight text-surface">BASTIÓN DIGITAL</span>
+                    </div>
+                    <p class="text-xs sm:text-sm text-surface/70 leading-relaxed max-w-sm">
+                        Firma de consultoría digital, diseño y desarrollo web para empresas, arquitectura de datos e IA y gobernanza corporativa con presencia en Madrid y Londres.
+                    </p>
+                </div>
+
+                <div class="md:col-span-3 space-y-3">
+                    <h3 class="text-xs font-semibold uppercase tracking-wider text-brass">Secciones</h3>
+                    <ul class="space-y-2 text-xs text-surface/75">
+                        <li><a href="#impacto" class="hover:text-surface transition-colors">Impacto de Cliente</a></li>
+                        <li><a href="#sectores" class="hover:text-surface transition-colors">Soluciones por Sector</a></li>
+                        <li><a href="#capacidades" class="hover:text-surface transition-colors">Capacidades y Alianzas</a></li>
+                        <li><a href="#perspectivas" class="hover:text-surface transition-colors">Informes y Perspectivas</a></li>
+                        <li><a href="#liderazgo" class="hover:text-surface transition-colors">Liderazgo y Sedes</a></li>
+                        <li><a href="#contacto" class="hover:text-surface transition-colors">Contacto</a></li>
+                    </ul>
+                </div>
+
+                <div class="md:col-span-4 space-y-3">
+                    <h3 class="text-xs font-semibold uppercase tracking-wider text-brass">Aviso Legal</h3>
+                    <div class="flex flex-wrap gap-x-5 gap-y-2 text-xs text-surface/75">
+                        <button type="button" data-legal="privacidad" class="legal-btn hover:text-surface underline underline-offset-4 transition-colors">
+                            Política de Privacidad
+                        </button>
+                        <button type="button" data-legal="terminos" class="legal-btn hover:text-surface underline underline-offset-4 transition-colors">
+                            Términos de Uso
+                        </button>
+                        <button type="button" data-legal="cookies" class="legal-btn hover:text-surface underline underline-offset-4 transition-colors">
+                            Política de Cookies
+                        </button>
+                    </div>
+                    <p class="text-[11px] text-surface/55 pt-2 leading-relaxed">
+                        Las métricas y casos de esta demostración son ilustrativos. Si alguna imagen externa no carga, se muestra automáticamente un respaldo visual sobrio de Bastión Digital.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-surface/60">
+                <p>© 2026 Bastión Digital Consultoría y Tecnología S.L. Todos los derechos reservados.</p>
+                <p>Madrid · Londres</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==================== MODAL 1: CASO DE SECTOR DETALLADO ==================== -->
+    <div id="sector-case-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-navy/75 backdrop-blur-xs opacity-0 transition-opacity duration-200" role="dialog" aria-modal="true" aria-labelledby="scm-title">
+        <div class="relative w-full max-w-3xl bg-surface border border-hairline rounded-xl shadow-corp-lg overflow-hidden max-h-[90vh] flex flex-col">
+
+            <div class="flex items-center justify-between px-6 py-4 bg-softSurface border-b border-hairline shrink-0">
+                <div class="flex items-center gap-2.5">
+                    <span id="scm-sector" class="px-2.5 py-1 rounded bg-navy text-surface text-[11px] font-bold uppercase tracking-wider">Sector</span>
+                    <span id="scm-regulation" class="text-xs font-medium text-slateCorp">Marco regulatorio</span>
+                </div>
+                <button type="button" id="close-scm" aria-label="Cerrar caso sectorial" class="p-1.5 rounded-md text-slateCorp hover:text-navy hover:bg-mutedSurface transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="overflow-y-auto p-6 sm:p-8 space-y-6">
+                <div class="relative h-52 sm:h-60 rounded-lg overflow-hidden bg-mutedSurface border border-hairline">
+                    <img id="scm-img" src="" alt="" class="w-full h-full object-cover object-center">
+                </div>
+
+                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-hairline">
+                    <div>
+                        <h3 id="scm-title" class="text-2xl font-bold text-navy">Título del caso</h3>
+                        <p id="scm-client" class="text-xs font-medium text-slateCorp mt-1">Organización de referencia</p>
+                    </div>
+                    <div class="bg-softSurface border border-hairline rounded-lg px-4 py-3 sm:text-right shrink-0">
+                        <span id="scm-metric" class="block text-2xl font-bold text-corpBlue leading-none">+0%</span>
+                        <span id="scm-metric-label" class="block text-[11px] text-slateCorp mt-1">Indicador clave</span>
+                    </div>
+                </div>
+
+                <div class="space-y-1.5">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-navy">01 · Contexto y Reto Sectorial</h4>
+                    <p id="scm-context" class="text-sm text-bodyGray leading-relaxed"></p>
+                </div>
+
+                <div class="space-y-1.5">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-navy">02 · Arquitectura y Solución</h4>
+                    <p id="scm-solution" class="text-sm text-bodyGray leading-relaxed"></p>
+                </div>
+
+                <div class="bg-softSurface border border-hairline rounded-lg p-5 space-y-1.5">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-brass">03 · Impacto y Gobernanza</h4>
+                    <p id="scm-impact" class="text-sm font-medium text-navy leading-relaxed"></p>
+                </div>
+
+                <div class="pt-4 border-t border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <span class="text-xs text-slateCorp">¿Desea revisar este enfoque para su organización?</span>
+                    <button type="button" id="scm-contact-btn" class="px-5 py-3 rounded-md bg-corpBlue hover:bg-corpBlueHover text-surface text-xs font-semibold uppercase tracking-wider transition-colors inline-flex items-center justify-center gap-2">
+                        <span>Solicitar sesión sectorial</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL 2: LECTOR DE INFORME COMPLETO ==================== -->
+    <div id="insight-reader-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-navy/75 backdrop-blur-xs opacity-0 transition-opacity duration-200" role="dialog" aria-modal="true" aria-labelledby="irm-title">
+        <div class="relative w-full max-w-3xl bg-surface border border-hairline rounded-xl shadow-corp-lg overflow-hidden max-h-[90vh] flex flex-col">
+
+            <div class="flex items-center justify-between px-6 py-4 bg-softSurface border-b border-hairline shrink-0">
+                <div class="flex items-center gap-3 text-xs text-slateCorp">
+                    <span id="irm-category" class="font-bold uppercase tracking-wider text-corpBlue">Categoría</span>
+                    <span>·</span>
+                    <span id="irm-date">Fecha</span>
+                    <span>·</span>
+                    <span id="irm-readtime">Lectura</span>
+                </div>
+                <button type="button" id="close-irm" aria-label="Cerrar informe" class="p-1.5 rounded-md text-slateCorp hover:text-navy hover:bg-mutedSurface transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+
+            <div class="overflow-y-auto p-6 sm:p-10 space-y-6">
+                <div class="relative h-56 sm:h-64 rounded-lg overflow-hidden bg-mutedSurface border border-hairline">
+                    <img id="irm-img" src="" alt="" class="w-full h-full object-cover object-center">
+                </div>
+
+                <div class="space-y-2 border-b border-hairline pb-5">
+                    <h3 id="irm-title" class="text-2xl sm:text-3xl font-bold text-navy leading-snug">Título del informe</h3>
+                    <p id="irm-author" class="text-xs font-medium text-slateCorp">Autor · Práctica</p>
+                </div>
+
+                <div id="irm-body" class="space-y-4 text-sm sm:text-base text-bodyGray leading-relaxed"></div>
+
+                <div class="pt-5 border-t border-hairline flex items-center justify-between gap-4">
+                    <span class="text-xs text-slateCorp">Perspectivas · Bastión Digital</span>
+                    <button type="button" id="irm-contact-btn" class="px-5 py-2.5 rounded-md bg-navy hover:bg-corpBlue text-surface text-xs font-semibold uppercase tracking-wider transition-colors">
+                        Consultar con la práctica
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==================== MODAL 3: INFORMACIÓN LEGAL ==================== -->
+    <div id="legal-info-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4 sm:p-6 bg-navy/75 backdrop-blur-xs opacity-0 transition-opacity duration-200" role="dialog" aria-modal="true" aria-labelledby="lim-title">
+        <div class="relative w-full max-w-2xl bg-surface border border-hairline rounded-xl shadow-corp-lg overflow-hidden max-h-[85vh] flex flex-col">
+            <div class="flex items-center justify-between px-6 py-4 bg-softSurface border-b border-hairline shrink-0">
+                <h3 id="lim-title" class="text-base font-bold text-navy">Aviso Legal</h3>
+                <button type="button" id="close-lim" aria-label="Cerrar ventana legal" class="p-1.5 rounded-md text-slateCorp hover:text-navy hover:bg-mutedSurface transition-colors">
+                    <i data-lucide="x" class="w-5 h-5"></i>
+                </button>
+            </div>
+            <div id="lim-body" class="overflow-y-auto p-6 sm:p-8 space-y-4 text-sm text-bodyGray leading-relaxed"></div>
+            <div class="px-6 py-4 bg-softSurface border-t border-hairline flex justify-end shrink-0">
+                <button type="button" id="accept-lim" class="px-5 py-2 rounded-md bg-navy text-surface text-xs font-semibold uppercase tracking-wider">
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Aviso flotante (Toast) -->
+    <div id="corp-toast" class="fixed bottom-5 right-5 z-50 hidden items-center gap-2.5 px-4 py-3 rounded-lg bg-navy text-surface shadow-corp-lg text-xs font-medium">
+        <i data-lucide="check" class="w-4 h-4 text-brass shrink-0"></i>
+        <span id="corp-toast-text">Aviso</span>
+    </div>
+
+    <!-- ==================== DATOS CENTRALIZADOS Y LÓGICA DE LA APLICACIÓN ==================== -->
+    <script>
+        /**
+         * ============================================================================
+         * 1. IMÁGENES DEL HERO Y RESPALDO VISUAL (UNSPLASH + FALLBACK LIMPIO)
+         * ============================================================================
+         * Cambie aquí las URLs de Unsplash si desea otras fotografías.
+         * Si alguna imagen falla al cargar, applySafePhoto() aplica automáticamente
+         * el respaldo de Unsplash o un marco SVG/gradiente sobrio sin romper el diseño.
+         */
+        const HERO_MEDIA = {
+            heroBgUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80",
+            heroBgFallback: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1600&q=80",
+            panelUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
+            panelFallback: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=80"
+        };
+
+        /**
+         * ============================================================================
+         * 1B. SLIDER HORIZONTAL CONTINUO DE ORGANIZACIONES (COMPANIES_SLIDER_DATA)
+         * ============================================================================
+         * Edite este arreglo para añadir, quitar o reordenar las organizaciones del
+         * carrusel continuo. Cada entrada incluye logotipo geométrico/tipográfico en SVG
+         * limpio (sin depender de rutas externas) y categoría de referencia.
+         */
+        const COMPANIES_SLIDER_DATA = [
+            {
+                id: "thepower",
+                name: "ThePower",
+                sector: "Educación y Talento Digital",
+                markBg: "#0B192C",
+                markFg: "#FFFFFF",
+                svgMark: `<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>`
+            },
+            {
+                id: "bbva",
+                name: "BBVA",
+                sector: "Banca y Servicios Financieros",
+                markBg: "#1D4ED8",
+                markFg: "#FFFFFF",
+                svgMark: `<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="1"></rect><line x1="8" y1="9" x2="16" y2="9"></line><line x1="8" y1="14" x2="15" y2="14"></line></svg>`
+            },
+            {
+                id: "telefonica",
+                name: "Telefónica",
+                sector: "Telecomunicaciones y Conectividad",
+                markBg: "#0F294A",
+                markFg: "#FFFFFF",
+                svgMark: `<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle></svg>`
+            },
+            {
+                id: "dhl",
+                name: "DHL",
+                sector: "Logística y Cadena de Suministro",
+                markBg: "#8A5A1E",
+                markFg: "#FFFFFF",
+                svgMark: `<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M5 17h14M5 12h14M5 7h11"></path></svg>`
+            },
+            {
+                id: "google",
+                name: "Google",
+                sector: "Cloud, Búsqueda e Inteligencia Artificial",
+                markBg: "#1E40AF",
+                markFg: "#FFFFFF",
+                svgMark: `<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><path d="M12 12h8"></path></svg>`
+            },
+            {
+                id: "microsoft",
+                name: "Microsoft",
+                sector: "Software Empresarial y Nube",
+                markBg: "#2E4765",
+                markFg: "#FFFFFF",
+                svgMark: `<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="8" height="8"></rect><rect x="13" y="3" width="8" height="8"></rect><rect x="3" y="13" width="8" height="8"></rect><rect x="13" y="13" width="8" height="8"></rect></svg>`
+            },
+            {
+                id: "sanitas",
+                name: "Sanitas",
+                sector: "Salud y Servicios Asistenciales",
+                markBg: "#1D4ED8",
+                markFg: "#FFFFFF",
+                svgMark: `<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>`
+            },
+            {
+                id: "indra",
+                name: "Indra",
+                sector: "Ingeniería, Defensa y Sistemas",
+                markBg: "#0B192C",
+                markFg: "#FFFFFF",
+                svgMark: `<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><polygon points="12 3 21 9 18 20 6 20 3 9"></polygon></svg>`
+            },
+            {
+                id: "iberostar-group",
+                name: "Iberostar Group",
+                sector: "Turismo, Hospitalidad y Sostenibilidad",
+                markBg: "#B48A4E",
+                markFg: "#FFFFFF",
+                svgMark: `<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 16c3-2 6-2 9 0s6 2 9 0"></path><path d="M12 4v8"></path></svg>`
+            },
+            {
+                id: "mapfre",
+                name: "Mapfre",
+                sector: "Seguros y Gestión de Riesgos",
+                markBg: "#2E4765",
+                markFg: "#FFFFFF",
+                svgMark: `<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3l8 4v6c0 5-3.4 8-8 9-4.6-1-8-4-8-9V7l8-4z"></path></svg>`
+            }
+        ];
+
+        /**
+         * ============================================================================
+         * 2. MÉTRICAS DE IMPACTO DE CLIENTE (IMPACT_METRICS_DATA)
+         * ============================================================================
+         */
+        const IMPACT_METRICS_DATA = [
+            {
+                metric: "-38%",
+                label: "Tiempo medio de ciclo en procesos críticos, portales y flujos de aprobación",
+                sectorTag: "Banca y Finanzas",
+                metricColor: "text-corpBlue",
+                imageUrl: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=900&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
+                alt: "Análisis financiero y métricas de eficiencia corporativa"
+            },
+            {
+                metric: "+42%",
+                label: "Conversión y captación B2B tras renovar portales web y experiencia de usuario",
+                sectorTag: "Web y Producto Digital",
+                metricColor: "text-corpBlue",
+                imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=900&q=80",
+                alt: "Rendimiento digital y diseño web corporativo orientado a resultados"
+            },
+            {
+                metric: "-27%",
+                label: "Paradas no planificadas en activos industriales con analítica predictiva",
+                sectorTag: "Energía e Industria",
+                metricColor: "text-brass",
+                imageUrl: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=900&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=900&q=80",
+                alt: "Infraestructura energética y transmisión eléctrica"
+            },
+            {
+                metric: "100%",
+                label: "Trazabilidad de accesos, accesibilidad y cumplimiento auditable en entornos regulados",
+                sectorTag: "Salud y Sector Público",
+                metricColor: "text-navy",
+                imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80",
+                alt: "Monitorización de datos, seguridad y gobernanza digital"
+            }
+        ];
+
+        /**
+         * ============================================================================
+         * 3. SOLUCIONES POR SECTOR E INDUSTRIA (SECTOR_SOLUTIONS_DATA)
+         * ============================================================================
+         * Sectores admitidos en filtros:
+         * - "Banca y Finanzas"
+         * - "Energía e Industria"
+         * - "Salud y Sector Público"
+         * - "Retail y Consumo"
+         */
+        const SECTOR_SOLUTIONS_DATA = [
+            {
+                id: "banca-riesgo-gobernanza",
+                sector: "Banca y Finanzas",
+                regulation: "DORA · Basilea III · Portales Seguros y Gobierno del Dato",
+                title: "Portales corporativos, resiliencia operativa y ciclo de riesgo",
+                client: "Entidad financiera multinacional · Banca de Empresas",
+                metric: "-38%",
+                metricLabel: "Tiempo de resolución de expedientes",
+                summary: "Unificamos portales digitales de clientes, reglas de evaluación, linaje de datos regulatorios y pruebas de resiliencia operativa.",
+                imageUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1100&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1100&q=80",
+                alt: "Edificios corporativos de distrito financiero",
+                context: "Las revisiones de crédito empresarial, el acceso digital de clientes y los reportes regulatorios exigían procesos fragmentados entre unidades y sistemas.",
+                solution: "Diseñamos un portal corporativo unificado, un modelo de datos gobernado, automatización de validaciones y simulacros de continuidad alineados con regulación vigente.",
+                impact: "Reducción del 38% en tiempos de resolución, mayor autoservicio digital y trazabilidad completa ante auditorías internas y externas."
+            },
+            {
+                id: "energia-mantenimiento-red",
+                sector: "Energía e Industria",
+                regulation: "NIS2 · Transición Energética · Continuidad Industrial",
+                title: "Analítica predictiva, aplicaciones operativas y control de activos",
+                client: "Operador energético e industrial · Infraestructura crítica",
+                metric: "-27%",
+                metricLabel: "Paradas no planificadas en plantas clave",
+                summary: "Integramos aplicaciones web operativas, telemetría de campo, detección temprana de anomalías y segmentación segura de redes OT/IT.",
+                imageUrl: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1100&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1100&q=80",
+                alt: "Torres de alta tensión y entorno energético",
+                context: "Las incidencias imprevistas en equipos de generación y distribución generaban costes de intervención elevados y desviaciones operativas.",
+                solution: "Consolidamos series de sensores en una arquitectura cloud híbrida con paneles web responsivos, alertas preventivas y controles de acceso reforzados.",
+                impact: "Disminución del 27% en paradas no planificadas y mayor fiabilidad de suministro en periodos de alta demanda."
+            },
+            {
+                id: "salud-interoperabilidad-rgpd",
+                sector: "Salud y Sector Público",
+                regulation: "RGPD · ENS · WCAG Accesibilidad y Seguridad",
+                title: "Portales accesibles, gobernanza clínica y seguridad de red",
+                client: "Red asistencial y administración de servicios públicos",
+                metric: "100%",
+                metricLabel: "Trazabilidad de accesos y cumplimiento de estándares",
+                summary: "Desarrollamos servicios web accesibles y seguros, fortalecemos la protección de datos sensibles y garantizamos la continuidad de servicios esenciales.",
+                imageUrl: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1100&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1100&q=80",
+                alt: "Entorno sanitario moderno y gestión de servicios",
+                context: "La digitalización de trámites y procesos asistenciales requería elevar la accesibilidad web, el control de identidad y la auditoría sin ralentizar la operativa.",
+                solution: "Desplegamos interfaces web con criterios de accesibilidad, segmentación por nivel de riesgo, control de accesos por rol y planes de respuesta probados.",
+                impact: "Cobertura del 100% de activos críticos auditados, reducción del 52% en incidencias de acceso y mayor agilidad en la atención digital."
+            },
+            {
+                id: "retail-demanda-omnicanal",
+                sector: "Retail y Consumo",
+                regulation: "Privacidad del Cliente · Rendimiento Web y Suministro",
+                title: "Web corporativa de alto rendimiento, logística y experiencia omnicanal",
+                client: "Grupo de distribución y consumo multicanal",
+                metric: "+42%",
+                metricLabel: "Conversión digital y disponibilidad de catálogo",
+                summary: "Combinamos arquitectura web rápida y SEO técnico con previsión de demanda y reposición para mejorar conversión y disponibilidad.",
+                imageUrl: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1100&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1553413077-190dd305871c?auto=format&fit=crop&w=1100&q=80",
+                alt: "Centro logístico y cadena de suministro de consumo",
+                context: "Las campañas comerciales y variaciones rápidas de demanda exigían una web más ágil, mejor posicionamiento orgánico y sincronización con inventario.",
+                solution: "Rediseñamos la experiencia web responsiva y optimizamos tiempos de carga y estructura técnica junto a modelos de previsión y reabastecimiento.",
+                impact: "Incremento del 42% en la conversión digital y mejora notable en la velocidad de carga móvil y disponibilidad de producto."
+            }
+        ];
+
+        /**
+         * ============================================================================
+         * 4. CAPACIDADES Y ALIANZAS (CAPABILITIES_DATA & ALLIANCES_DATA)
+         * ============================================================================
+         */
+        const CAPABILITIES_DATA = [
+            {
+                id: "diseno-desarrollo-web",
+                tabTitle: "Diseño y Desarrollo Web",
+                code: "01",
+                headline: "Sitios web corporativos, sistemas de diseño y aplicaciones web responsivas",
+                summary: "Diseñamos y desarrollamos presencia web empresarial a medida, portales corporativos y aplicaciones web rápidas, accesibles y orientadas a conversión, con arquitectura limpia y SEO técnico.",
+                imageUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1100&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1100&q=80",
+                alt: "Equipo de diseño y desarrollo web trabajando en proyectos corporativos",
+                deliverables: [
+                    "Sistemas de diseño, UI/UX corporativo y portales empresariales a medida",
+                    "Aplicaciones web responsivas con accesibilidad, alto rendimiento y SEO técnico",
+                    "Integración con CRM, analítica, CMS y flujos de captación B2B"
+                ],
+                allianceNote: "Arquitectura web escalable, optimizada para móvil y preparada para crecer con su negocio."
+            },
+            {
+                id: "consultoria-digital-transformacion",
+                tabTitle: "Consultoría Digital y Transformación",
+                code: "02",
+                headline: "Estrategia digital, cartera de iniciativas y modelo operativo",
+                summary: "Acompañamos a direcciones generales y comités ejecutivos en la definición de prioridades digitales, asignación de inversión y transformación de procesos con métricas claras.",
+                imageUrl: "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&w=1100&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1100&q=80",
+                alt: "Equipo directivo revisando estrategia digital y resultados en sala de juntas",
+                deliverables: [
+                    "Diagnóstico digital, mapa de ruta y priorización de iniciativas por retorno",
+                    "Rediseño de experiencia de cliente B2B/B2C y gobierno de portafolio",
+                    "Acompañamiento ejecutivo en modernización operativa y gestión del cambio"
+                ],
+                allianceNote: "Alineación directa entre estrategia de negocio, producto digital y operaciones."
+            },
+            {
+                id: "datos-ia-enterprise",
+                tabTitle: "Datos e IA Enterprise",
+                code: "03",
+                headline: "Plataformas de datos gobernadas e inteligencia artificial auditable",
+                summary: "Llevamos los datos y la inteligencia artificial desde pruebas aisladas a sistemas productivos con calidad verificada, trazabilidad de fuentes y control de riesgos.",
+                imageUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1100&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1100&q=80",
+                alt: "Visualización de datos analíticos y arquitectura empresarial",
+                deliverables: [
+                    "Arquitectura de datos unificada, catálogo, calidad y linaje extremo a extremo",
+                    "Casos de uso de analítica avanzada e IA generativa con supervisión humana",
+                    "Marcos de gobierno de IA, evaluación de sesgos y cumplimiento normativo"
+                ],
+                allianceNote: "Compatible con plataformas cloud líderes, lagos de datos y entornos híbridos."
+            },
+            {
+                id: "ciberseguridad-gobernanza",
+                tabTitle: "Ciberseguridad y Gobernanza",
+                code: "04",
+                headline: "Resiliencia operativa, control de riesgos y auditoría tecnológica",
+                summary: "Fortalecemos la defensa de activos críticos, la seguridad de aplicaciones web y plataformas, la continuidad de negocio y el cumplimiento regulatorio.",
+                imageUrl: "https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=1100&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1100&q=80",
+                alt: "Centro de control, seguridad de la información y gobernanza",
+                deliverables: [
+                    "Evaluación de riesgos corporativos, continuidad de negocio y planes de crisis",
+                    "Adecuación a requisitos normativos, seguridad web y preparación de auditorías",
+                    "Arquitectura de identidad, privilegios mínimos y segmentación de redes"
+                ],
+                allianceNote: "Alineación con estándares internacionales y comités de auditoría y riesgos."
+            }
+        ];
+
+        const ALLIANCES_DATA = [
+            {
+                name: "Arquitectura Web, Cloud y CDN",
+                category: "Diseño y Desarrollo Web",
+                detail: "Despliegues rápidos, entrega global de contenidos, rendimiento web y SEO técnico."
+            },
+            {
+                name: "Sistemas de Diseño y Producto Digital",
+                category: "Experiencia y Marca",
+                detail: "Componentes reutilizables, accesibilidad, coherencia visual y prototipado iterativo."
+            },
+            {
+                name: "Datos y Analítica Empresarial",
+                category: "Ecosistema de Datos e IA",
+                detail: "Integración de almacenes de datos, gobierno de metadatos y cuadros de mando."
+            },
+            {
+                name: "Identidad y Seguridad Zero Trust",
+                category: "Ciberseguridad",
+                detail: "Federación de identidades, protección de aplicaciones y monitorización continua."
+            }
+        ];
+
+        /**
+         * ============================================================================
+         * 4B. EMPRESAS DE REFERENCIA DEL SLIDER (PARTNER_COMPANIES_DATA)
+         * ============================================================================
+         * Exactamente las 10 organizaciones solicitadas con URLs públicas y respaldo
+         * automático attachImageFallback para evitar iconos de imagen rota.
+         */
+        const PARTNER_COMPANIES_DATA = [
+            {
+                id: "thepower",
+                name: "ThePower",
+                sector: "Educación y Talento Digital",
+                logoUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/ThePower_Education_logo.png",
+                fallbackUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/ThePower_logo.png"
+            },
+            {
+                id: "bbva",
+                name: "BBVA",
+                sector: "Banca y Servicios Financieros",
+                logoUrl: "https://upload.wikimedia.org/wikipedia/commons/5/50/BBVA_2019.svg",
+                fallbackUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/BBVA_logo_2025.svg"
+            },
+            {
+                id: "telefonica",
+                name: "Telefónica",
+                sector: "Conectividad y Soluciones Digitales",
+                logoUrl: "https://upload.wikimedia.org/wikipedia/commons/c/c8/Telef%C3%B3nica_2021_logo.svg",
+                fallbackUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Telef%C3%B3nica_Logo.svg"
+            },
+            {
+                id: "dhl",
+                name: "DHL",
+                sector: "Logística y Cadena de Suministro",
+                logoUrl: "https://upload.wikimedia.org/wikipedia/commons/a/ac/DHL_Logo.svg",
+                fallbackUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/DHL_Group_Logo.svg"
+            },
+            {
+                id: "google",
+                name: "Google",
+                sector: "Cloud, Datos e Inteligencia Artificial",
+                logoUrl: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg",
+                fallbackUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Google_%22G%22_logo.svg"
+            },
+            {
+                id: "microsoft",
+                name: "Microsoft",
+                sector: "Plataformas Empresariales y Cloud",
+                logoUrl: "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg",
+                fallbackUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Microsoft_icon.svg"
+            },
+            {
+                id: "sanitas",
+                name: "Sanitas",
+                sector: "Salud y Bienestar Digital",
+                logoUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Sanitas-logo_2026.png",
+                fallbackUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Logotipo_de_Sanitas.jpg"
+            },
+            {
+                id: "indra",
+                name: "Indra",
+                sector: "Tecnología, Defensa y Sistemas Críticos",
+                logoUrl: "https://upload.wikimedia.org/wikipedia/commons/3/3c/Indra-Sistemas-Logo.svg",
+                fallbackUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Logo_de_Indra.jpg"
+            },
+            {
+                id: "iberostar-group",
+                name: "Iberostar Group",
+                sector: "Turismo y Hospitalidad",
+                logoUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/IBEROSTAR_New_Logo.jpg",
+                fallbackUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Logo_Grupo_IBEROSTAR.jpg"
+            },
+            {
+                id: "mapfre",
+                name: "Mapfre",
+                sector: "Seguros y Previsión",
+                logoUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Logo_Mapfre_2026.svg",
+                fallbackUrl: "https://commons.wikimedia.org/wiki/Special:FilePath/Mapfre_logo.svg"
+            }
+        ];
+
+        /**
+         * ============================================================================
+         * 5. INFORMES Y PERSPECTIVAS (INSIGHTS_DATA)
+         * ============================================================================
+         */
+        const INSIGHTS_DATA = [
+            {
+                id: "web-corporativa-que-convierte-y-escala",
+                category: "Diseño y Desarrollo Web",
+                date: "Noviembre 2026",
+                readTime: "6 min de lectura",
+                author: "Javier Valdivia · Socio Director de Bastión Digital",
+                title: "Por qué la web corporativa moderna es un motor de estrategia y captación",
+                excerpt: "Combinar claridad de propuesta, rendimiento técnico, accesibilidad y SEO estructurado transforma el sitio corporativo en un activo comercial clave.",
+                imageUrl: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80",
+                alt: "Análisis de rendimiento web y estrategia digital corporativa",
+                paragraphs: [
+                    "Durante años, muchas empresas trataron su sitio web como un folleto estático difícil de actualizar. Hoy, directivos, clientes corporativos y socios evalúan la solvencia, el enfoque y la claridad de una organización a través de su experiencia digital.",
+                    "Un proyecto de diseño y desarrollo web eficaz parte de los objetivos de negocio: define recorridos claros para cada perfil, asegura velocidad de carga en móvil y escritorio, aplica accesibilidad y estructura el SEO técnico desde la base.",
+                    "Cuando el diseño de sistemas y el desarrollo web se integran con la estrategia comercial y el análisis de datos, el impacto se mide en oportunidades cualificadas y confianza."
+                ]
+            },
+            {
+                id: "ia-gobernada-en-produccion",
+                category: "Datos e IA",
+                date: "Octubre 2026",
+                readTime: "6 min de lectura",
+                author: "Marta Soler · Socia de Datos e IA",
+                title: "Escalar la inteligencia artificial con gobierno y retorno medible",
+                excerpt: "Por qué el paso del piloto a la producción exige datos fiables, integración en el proceso real y métricas de negocio acordadas.",
+                imageUrl: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=1000&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1000&q=80",
+                alt: "Entorno tecnológico y análisis estratégico de datos",
+                paragraphs: [
+                    "Muchas organizaciones acumulan pruebas de concepto de inteligencia artificial que no llegan a operar de forma continua. El freno habitual no es el algoritmo, sino la fragmentación de los datos de origen y la falta de integración en los flujos diarios.",
+                    "Para lograr un despliegue sostenible conviene priorizar casos con impacto claro en tiempo de ciclo, calidad o atención al cliente, definiendo desde el inicio umbrales de precisión, revisión humana y registro de auditoría.",
+                    "Tratar la IA como una disciplina de ingeniería y gobierno —y no como un proyecto aislado— permite escalar con confianza y control presupuestario."
+                ]
+            },
+            {
+                id: "resiliencia-operativa-y-auditoria",
+                category: "Gobernanza y Riesgo",
+                date: "Septiembre 2026",
+                readTime: "5 min de lectura",
+                author: "Carlos Mendoza · Socio de Ciberseguridad y Riesgo",
+                title: "Resiliencia operativa: probar la continuidad más allá del papel",
+                excerpt: "La preparación real se verifica simulando fallos de terceros, dependencias cruzadas y tiempos de recuperación bajo presión.",
+                imageUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1000&q=80",
+                alt: "Revisión ejecutiva de riesgos y planificación operativa",
+                paragraphs: [
+                    "Las políticas y planes de contingencia son indispensables, pero solo revelan sus puntos débiles cuando se someten a escenarios de estrés realistas que incluyan proveedores tecnológicos, plataformas web y procesos críticos.",
+                    "Los ejercicios conjuntos entre dirección, tecnología, cumplimiento y operaciones permiten identificar dependencias ocultas y ajustar los tiempos reales de recuperación antes de que ocurra una incidencia.",
+                    "Una arquitectura clara y responsabilidades bien definidas reducen drásticamente el impacto de cualquier interrupción."
+                ]
+            }
+        ];
+
+        /**
+         * ============================================================================
+         * 6. LIDERAZGO Y SEDES (LEADERSHIP_DATA & OFFICES_DATA)
+         * ============================================================================
+         */
+        const LEADERSHIP_DATA = [
+            {
+                name: "Javier Valdivia",
+                role: "Socio Director · Consultoría Digital y Desarrollo Web",
+                bio: "Más de 18 años asesorando empresas en Europa en transformación digital, diseño de plataformas web corporativas, sistemas de diseño y crecimiento sostenible.",
+                credentials: "MBA · Líder de estrategia digital y producto web",
+                imageUrl: "https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=800&q=80",
+                alt: "Retrato corporativo de Javier Valdivia, Socio Director de Bastión Digital"
+            },
+            {
+                name: "Marta Soler",
+                role: "Socia · Datos e IA Enterprise",
+                bio: "Especialista en plataformas de datos, gobierno analítico y despliegue responsable de inteligencia artificial en entornos corporativos y regulados.",
+                credentials: "Ing. Informática · 15 años en arquitectura y datos",
+                imageUrl: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=800&q=80",
+                alt: "Retrato corporativo de Marta Soler, Socia de Datos e IA"
+            },
+            {
+                name: "Carlos Mendoza",
+                role: "Socio · Ciberseguridad, Riesgo y Gobernanza",
+                bio: "Responsable de resiliencia operativa, seguridad de aplicaciones y plataformas, control de riesgos tecnológicos y cumplimiento normativo.",
+                credentials: "CISM / CISSP · 14 años en gobernanza y riesgo",
+                imageUrl: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80",
+                alt: "Retrato corporativo de Carlos Mendoza, Socio de Ciberseguridad y Riesgo"
+            }
+        ];
+
+        const OFFICES_DATA = [
+            {
+                city: "Madrid",
+                subtitle: "Sede Iberia y Sur de Europa",
+                address: "Paseo de la Castellana, 95 · 28046 Madrid",
+                phone: "+34 910 000 120",
+                focus: "Centro de consultoría digital, diseño y desarrollo web corporativo y gobernanza de datos.",
+                imageUrl: "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?auto=format&fit=crop&w=1000&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80",
+                alt: "Arquitectura urbana y entorno corporativo de Madrid"
+            },
+            {
+                city: "Londres",
+                subtitle: "Oficina Reino Unido y Mercados Internacionales",
+                address: "22 Bishopsgate, Level 28 · London EC2N 4BQ",
+                phone: "+44 20 7946 0190",
+                focus: "Práctica de servicios financieros, arquitectura digital, resiliencia operativa y alianzas globales.",
+                imageUrl: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&fit=crop&w=1000&q=80",
+                fallbackUrl: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80",
+                alt: "Distrito financiero y arquitectura de Londres"
+            }
+        ];
+
+        // ==================== ESTADO Y UTILIDADES DE IMAGEN ====================
+        const state = {
+            activeSector: "Todos",
+            activeCapabilityId: CAPABILITIES_DATA[0].id,
+            partnerSliderPaused: false
+        };
+
+        function escapeHtml(value) {
+            return String(value).replace(/[&<>"']/g, ch => ({
+                "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"
+            }[ch]));
+        }
+
+        function refreshIcons() {
+            if (window.lucide && typeof window.lucide.createIcons === "function") {
+                window.lucide.createIcons();
+            }
+        }
+
+        /**
+         * Aplica manejo de errores a una etiqueta <img>:
+         * 1) Intenta una URL de respaldo secundaria.
+         * 2) Si también falla, oculta la imagen rota y deja un fondo sobrio con etiqueta
+         *    para que nunca aparezca el icono de imagen rota.
+         */
+        function attachImageFallback(imgEl, primaryUrl, fallbackUrl, labelText = "Bastión Digital") {
+            if (!imgEl) return;
+            imgEl.dataset.fallbackStep = "0";
+            imgEl.src = primaryUrl;
+
+            imgEl.onerror = function () {
+                const step = Number(imgEl.dataset.fallbackStep || "0");
+                if (step === 0 && fallbackUrl && fallbackUrl !== primaryUrl) {
+                    imgEl.dataset.fallbackStep = "1";
+                    imgEl.src = fallbackUrl;
+                } else {
+                    imgEl.dataset.fallbackStep = "2";
+                    imgEl.classList.add("hidden");
+                    const parent = imgEl.parentElement;
+                    if (parent && !parent.querySelector(".img-clean-fallback")) {
+                        const placeholder = document.createElement("div");
+                        placeholder.className = "img-clean-fallback w-full h-full flex flex-col items-center justify-center bg-mutedSurface text-slateCorp p-3 text-center rounded-md";
+                        placeholder.innerHTML = `<span class="text-[10px] font-bold uppercase tracking-[0.16em] text-brass">Bastión Digital</span><span class="text-xs font-bold text-navy mt-0.5">${escapeHtml(labelText)}</span>`;
+                        parent.appendChild(placeholder);
+                    }
+                }
+            };
+        }
+
+        function refreshIcons() {
+            if (window.lucide && typeof window.lucide.createIcons === "function") {
+                window.lucide.createIcons();
+            }
+        }
+
+        /**
+         * Aplica manejo de errores a una etiqueta <img>:
+         * 1) Intenta una URL de respaldo secundaria.
+         * 2) Si también falla, oculta la imagen rota y deja un fondo sobrio con etiqueta
+         *    para que nunca aparezca el icono de imagen rota.
+         */
+        function attachImageFallback(imgEl, primaryUrl, fallbackUrl, labelText = "Aldea & Partners") {
+            if (!imgEl) return;
+            imgEl.dataset.fallbackStep = "0";
+            imgEl.src = primaryUrl;
+
+            imgEl.onerror = function () {
+                const step = Number(imgEl.dataset.fallbackStep || "0");
+                if (step === 0 && fallbackUrl && fallbackUrl !== primaryUrl) {
+                    imgEl.dataset.fallbackStep = "1";
+                    imgEl.src = fallbackUrl;
+                } else {
+                    imgEl.dataset.fallbackStep = "2";
+                    imgEl.classList.add("hidden");
+                    const parent = imgEl.parentElement;
+                    if (parent && !parent.querySelector(".img-clean-fallback")) {
+                        const placeholder = document.createElement("div");
+                    placeholder.className = "img-clean-fallback w-full h-full flex flex-col items-center justify-center bg-mutedSurface text-slateCorp p-4 text-center";
+                    placeholder.innerHTML = `<span class="text-[10px] font-bold uppercase tracking-[0.18em] text-brass">Bastión Digital</span><span class="text-xs font-semibold mt-1">${escapeHtml(labelText)}</span>`;
+                    parent.appendChild(placeholder);
+                }
+            }
+        };
+    }
+
+    function hydrateAllFallbackImages(root = document) {
+        root.querySelectorAll("img[data-src]").forEach(img => {
+            const src = img.getAttribute("data-src");
+            const fb = img.getAttribute("data-fallback") || "";
+            const lbl = img.getAttribute("data-label") || img.getAttribute("alt") || "Bastión Digital";
+            attachImageFallback(img, src, fb, lbl);
+        });
+    }
+
+    let toastTimeout;
+    function showToast(message) {
+        const toast = document.getElementById("corp-toast");
+        document.getElementById("corp-toast-text").textContent = message;
+        toast.classList.remove("hidden");
+        toast.classList.add("flex");
+        clearTimeout(toastTimeout);
+        toastTimeout = setTimeout(() => {
+            toast.classList.add("hidden");
+            toast.classList.remove("flex");
+        }, 3000);
+        refreshIcons();
+    }
+
+    // ==================== RENDERIZADO DE SECCIONES ====================
+        function initHeroMedia() {
+            attachImageFallback(
+                document.getElementById("hero-bg-img"),
+                HERO_MEDIA.heroBgUrl,
+                HERO_MEDIA.heroBgFallback,
+                "Entorno Corporativo"
+            );
+            attachImageFallback(
+                document.getElementById("hero-panel-img"),
+                HERO_MEDIA.panelUrl,
+                HERO_MEDIA.panelFallback,
+                "Comité Ejecutivo"
+            );
+        }
+
+        function renderImpactMetrics() {
+            const grid = document.getElementById("impact-metrics-grid");
+            grid.innerHTML = IMPACT_METRICS_DATA.map(item => `
+                <article class="triada-card bg-surface border border-hairline hover:border-corpBlue/40 rounded-xl overflow-hidden flex flex-col justify-between shadow-corp">
+                    <div>
+                        <div class="relative h-40 bg-mutedSurface overflow-hidden">
+                            <img
+                                data-src="${escapeHtml(item.imageUrl)}"
+                                data-fallback="${escapeHtml(item.fallbackUrl)}"
+                                data-label="${escapeHtml(item.sectorTag)}"
+                                alt="${escapeHtml(item.alt)}"
+                                class="triada-photo w-full h-full object-cover object-center"
+                            >
+                            <span class="absolute top-3 left-3 px-2.5 py-1 rounded bg-navy/85 text-surface text-[10px] font-bold uppercase tracking-wider backdrop-blur-xs">
+                                ${escapeHtml(item.sectorTag)}
+                            </span>
+                        </div>
+                        <div class="p-6 space-y-2">
+                            <div class="text-3xl sm:text-4xl font-extrabold ${item.metricColor} tracking-tight">
+                                ${escapeHtml(item.metric)}
+                            </div>
+                            <p class="text-sm text-bodyGray leading-relaxed">
+                                ${escapeHtml(item.label)}
+                            </p>
+                        </div>
+                    </div>
+                </article>
+            `).join("");
+
+            hydrateAllFallbackImages(grid);
+        }
+
+        function renderCompaniesSlider() {
+            const track = document.getElementById("companies-slider-track");
+            const viewport = document.getElementById("companies-slider-viewport");
+            if (!track || !viewport) return;
+
+            function buildCompanyCard(company, isClone = false) {
+                return `
+                    <div
+                        ${isClone ? 'aria-hidden="true"' : 'tabindex="0"'}
+                        class="shrink-0 w-60 sm:w-64 rounded-lg bg-surface border border-hairline hover:border-corpBlue/40 focus:outline-none focus:border-corpBlue p-4 flex items-center gap-3.5 transition-colors"
+                    >
+                        <div
+                            class="w-10 h-10 rounded-md flex items-center justify-center shrink-0"
+                            style="background-color:${escapeHtml(company.markBg)};color:${escapeHtml(company.markFg)};"
+                        >
+                            ${company.svgMark}
+                        </div>
+                        <div class="min-w-0">
+                            <div class="text-sm font-bold text-navy truncate">${escapeHtml(company.name)}</div>
+                            <div class="text-[11px] text-slateCorp truncate mt-0.5">${escapeHtml(company.sector)}</div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            // Duplicamos el conjunto para lograr un bucle horizontal continuo sin cortes bruscos
+            const primaryItems = COMPANIES_SLIDER_DATA.map(c => buildCompanyCard(c, false)).join("");
+            const duplicateItems = COMPANIES_SLIDER_DATA.map(c => buildCompanyCard(c, true)).join("");
+            track.innerHTML = primaryItems + duplicateItems;
+
+            const toggleBtn = document.getElementById("slider-toggle-btn");
+            const toggleLabel = document.getElementById("slider-toggle-label");
+            const toggleIcon = document.getElementById("slider-toggle-icon");
+            const prevBtn = document.getElementById("slider-prev-btn");
+            const nextBtn = document.getElementById("slider-next-btn");
+
+            function syncPausedState() {
+                track.classList.toggle("is-paused", state.sliderPaused);
+                toggleBtn.setAttribute("aria-pressed", String(state.sliderPaused));
+                toggleBtn.setAttribute(
+                    "aria-label",
+                    state.sliderPaused ? "Reanudar desplazamiento del slider" : "Pausar desplazamiento del slider"
+                );
+                toggleLabel.textContent = state.sliderPaused ? "Reanudar" : "Pausar";
+                toggleIcon.setAttribute("data-lucide", state.sliderPaused ? "play" : "pause");
+                refreshIcons();
+            }
+
+            if (toggleBtn && !toggleBtn.dataset.bound) {
+                toggleBtn.dataset.bound = "1";
+                toggleBtn.addEventListener("click", () => {
+                    state.sliderPaused = !state.sliderPaused;
+                    syncPausedState();
+                });
+            }
+
+            if (prevBtn && !prevBtn.dataset.bound) {
+                prevBtn.dataset.bound = "1";
+                prevBtn.addEventListener("click", () => {
+                    state.sliderPaused = true;
+                    syncPausedState();
+                    viewport.scrollBy({ left: -280, behavior: "smooth" });
+                });
+            }
+
+            if (nextBtn && !nextBtn.dataset.bound) {
+                nextBtn.dataset.bound = "1";
+                nextBtn.addEventListener("click", () => {
+                    state.sliderPaused = true;
+                    syncPausedState();
+                    viewport.scrollBy({ left: 280, behavior: "smooth" });
+                });
+            }
+
+            syncPausedState();
+        }
+
+        function renderSectorFilters() {
+            const bar = document.getElementById("sector-filter-bar");
+            const sectors = ["Todos", ...new Set(SECTOR_SOLUTIONS_DATA.map(s => s.sector))];
+
+            bar.innerHTML = sectors.map(sec => {
+                const active = sec === state.activeSector;
+                return `
+                    <button
+                        type="button"
+                        role="tab"
+                        aria-selected="${active}"
+                        data-sector="${escapeHtml(sec)}"
+                        class="sector-tab-btn px-4 py-2 rounded-md text-xs font-semibold uppercase tracking-wider transition-colors ${active ? "bg-navy text-surface" : "bg-softSurface text-slateCorp hover:text-navy border border-hairline"}"
+                    >
+                        ${escapeHtml(sec)}
+                    </button>
+                `;
+            }).join("");
+
+            bar.querySelectorAll(".sector-tab-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    state.activeSector = btn.dataset.sector;
+                    renderSectorFilters();
+                    renderSectorSolutions();
+                });
+            });
+        }
+
+        function renderSectorSolutions() {
+            const grid = document.getElementById("sector-solutions-grid");
+            const list = state.activeSector === "Todos"
+                ? SECTOR_SOLUTIONS_DATA
+                : SECTOR_SOLUTIONS_DATA.filter(s => s.sector === state.activeSector);
+
+            grid.innerHTML = list.map(sol => `
+                <article onclick="openSectorCaseModal('${sol.id}')" class="triada-card cursor-pointer bg-softSurface hover:bg-surface border border-hairline hover:border-corpBlue/50 hover:shadow-corp rounded-xl overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-52 bg-mutedSurface overflow-hidden">
+                            <img
+                                data-src="${escapeHtml(sol.imageUrl)}"
+                                data-fallback="${escapeHtml(sol.fallbackUrl)}"
+                                data-label="${escapeHtml(sol.sector)}"
+                                alt="${escapeHtml(sol.alt)}"
+                                class="triada-photo w-full h-full object-cover object-center"
+                            >
+                            <div class="absolute inset-0 bg-gradient-to-t from-navy/70 via-transparent to-transparent"></div>
+                            <span class="absolute bottom-3 left-4 text-[11px] font-semibold text-surface/95">
+                                ${escapeHtml(sol.regulation)}
+                            </span>
+                        </div>
+
+                        <div class="p-6 sm:p-7 space-y-3">
+                            <span class="inline-block text-[11px] font-bold uppercase tracking-wider text-corpBlue">
+                                ${escapeHtml(sol.sector)}
+                            </span>
+                            <h3 class="text-xl sm:text-2xl font-bold text-navy leading-snug">
+                                ${escapeHtml(sol.title)}
+                            </h3>
+                            <p class="text-sm text-bodyGray leading-relaxed">
+                                ${escapeHtml(sol.summary)}
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="px-6 sm:px-7 pb-6 sm:pb-7 pt-4 border-t border-hairline flex items-end justify-between gap-4">
+                        <div>
+                            <span class="block text-2xl font-extrabold text-corpBlue leading-none">${escapeHtml(sol.metric)}</span>
+                            <span class="block text-xs text-slateCorp mt-1">${escapeHtml(sol.metricLabel)}</span>
+                        </div>
+                        <span class="text-xs font-bold uppercase tracking-wider text-navy inline-flex items-center gap-1 shrink-0">
+                            <span>Ver caso</span>
+                            <i data-lucide="arrow-up-right" class="w-4 h-4 text-corpBlue"></i>
+                        </span>
+                    </div>
+                </article>
+            `).join("");
+
+            hydrateAllFallbackImages(grid);
+            refreshIcons();
+        }
+
+        function renderCapabilities() {
+            const tabsBar = document.getElementById("capabilities-tabs");
+            const panel = document.getElementById("capabilities-panel");
+
+            tabsBar.innerHTML = CAPABILITIES_DATA.map(cap => {
+                const active = cap.id === state.activeCapabilityId;
+                return `
+                    <button
+                        type="button"
+                        role="tab"
+                        aria-selected="${active}"
+                        data-cap="${cap.id}"
+                        class="cap-tab-btn p-4 text-left border-b-2 lg:border-b-0 lg:border-r last:border-r-0 transition-colors ${active ? "bg-surface text-corpBlue border-corpBlue font-bold" : "text-slateCorp hover:text-navy border-transparent font-semibold"}"
+                    >
+                        <span class="block text-[11px] uppercase tracking-wider opacity-75">Capacidad ${escapeHtml(cap.code)}</span>
+                        <span class="block text-sm mt-0.5">${escapeHtml(cap.tabTitle)}</span>
+                    </button>
+                `;
+            }).join("");
+
+            const current = CAPABILITIES_DATA.find(c => c.id === state.activeCapabilityId) || CAPABILITIES_DATA[0];
+
+            panel.innerHTML = `
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-5">
+                        <div class="relative h-60 sm:h-72 rounded-xl overflow-hidden bg-mutedSurface border border-hairline">
+                            <img
+                                data-src="${escapeHtml(current.imageUrl)}"
+                                data-fallback="${escapeHtml(current.fallbackUrl)}"
+                                data-label="${escapeHtml(current.tabTitle)}"
+                                alt="${escapeHtml(current.alt)}"
+                                class="w-full h-full object-cover object-center"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 space-y-5">
+                        <div class="space-y-2">
+                            <span class="text-xs font-bold uppercase tracking-[0.16em] text-brass">${escapeHtml(current.tabTitle)}</span>
+                            <h3 class="text-2xl font-bold text-navy leading-snug">${escapeHtml(current.headline)}</h3>
+                            <p class="text-sm sm:text-base text-bodyGray leading-relaxed">${escapeHtml(current.summary)}</p>
+                        </div>
+
+                        <div class="space-y-2.5 pt-1">
+                            <div class="text-xs font-bold uppercase tracking-wider text-navy">Entregables de práctica</div>
+                            <ul class="space-y-2">
+                                ${current.deliverables.map(d => `
+                                    <li class="flex items-start gap-2.5 text-sm text-bodyGray">
+                                        <span class="w-1.5 h-1.5 rounded-full bg-corpBlue mt-2 shrink-0"></span>
+                                        <span>${escapeHtml(d)}</span>
+                                    </li>
+                                `).join("")}
+                            </ul>
+                        </div>
+
+                        <div class="pt-3 border-t border-hairline flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                            <span class="text-xs text-slateCorp">${escapeHtml(current.allianceNote)}</span>
+                            <button type="button" id="cap-inquiry-btn" class="px-5 py-2.5 rounded-md bg-navy hover:bg-corpBlue text-surface text-xs font-semibold uppercase tracking-wider transition-colors shrink-0">
+                                Consultar capacidad
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            hydrateAllFallbackImages(panel);
+
+            tabsBar.querySelectorAll(".cap-tab-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    state.activeCapabilityId = btn.dataset.cap;
+                    renderCapabilities();
+                });
+            });
+
+            document.getElementById("cap-inquiry-btn").addEventListener("click", () => {
+                prefillContactArea(current.tabTitle, `Consulta sobre la capacidad de ${current.tabTitle}.`);
+            });
+        }
+
+        function renderAlliances() {
+            const grid = document.getElementById("alliances-grid");
+            grid.innerHTML = ALLIANCES_DATA.map(al => `
+                <article class="bg-surface border border-hairline rounded-xl p-5 space-y-2.5">
+                    <span class="text-[11px] font-bold uppercase tracking-wider text-corpBlue">${escapeHtml(al.category)}</span>
+                    <h4 class="text-base font-bold text-navy">${escapeHtml(al.name)}</h4>
+                    <p class="text-xs text-bodyGray leading-relaxed">${escapeHtml(al.detail)}</p>
+                </article>
+            `).join("");
+        }
+
+        /**
+         * Renderiza el carrusel continuo duplicando la lista de 10 empresas para un
+         * bucle visual fluido y conecta los controles manuales (anterior, siguiente, pausar/reanudar).
+         */
+        function renderPartnerSlider() {
+            const track = document.getElementById("partner-marquee-track");
+            const viewport = document.getElementById("partner-marquee-viewport");
+            const prevBtn = document.getElementById("partner-prev-btn");
+            const nextBtn = document.getElementById("partner-next-btn");
+            const toggleBtn = document.getElementById("partner-toggle-btn");
+            const toggleLabel = document.getElementById("partner-toggle-label");
+            const toggleIcon = document.getElementById("partner-toggle-icon");
+
+            const repeatedCompanies = [...PARTNER_COMPANIES_DATA, ...PARTNER_COMPANIES_DATA];
+
+            track.innerHTML = repeatedCompanies.map((company, index) => {
+                const isDuplicate = index >= PARTNER_COMPANIES_DATA.length;
+                return `
+                    <div ${isDuplicate ? 'aria-hidden="true"' : ""} class="shrink-0 w-64 sm:w-72 px-3">
+                        <div class="h-full min-h-[126px] rounded-xl bg-softSurface hover:bg-surface border border-hairline hover:border-corpBlue/40 p-4 flex flex-col justify-between transition-colors">
+                            <div class="h-12 flex items-center justify-center bg-surface rounded-lg border border-hairline/80 px-3 py-2 overflow-hidden">
+                                <img
+                                    data-src="${escapeHtml(company.logoUrl)}"
+                                    data-fallback="${escapeHtml(company.fallbackUrl)}"
+                                    data-label="${escapeHtml(company.name)}"
+                                    alt="${isDuplicate ? "" : escapeHtml(`Logo de ${company.name}`)}"
+                                    class="max-h-7 max-w-[150px] w-auto object-contain"
+                                >
+                            </div>
+                            <div class="pt-3 flex items-baseline justify-between gap-2">
+                                <span class="text-xs font-bold text-navy truncate">${escapeHtml(company.name)}</span>
+                                <span class="text-[10px] font-medium text-slateCorp truncate">${escapeHtml(company.sector)}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+
+            hydrateAllFallbackImages(track);
+
+            function syncPauseState() {
+                track.classList.toggle("is-paused", state.partnerSliderPaused);
+                toggleBtn.setAttribute("aria-pressed", String(state.partnerSliderPaused));
+                toggleLabel.textContent = state.partnerSliderPaused ? "Reanudar" : "Pausar";
+                toggleIcon.setAttribute("data-lucide", state.partnerSliderPaused ? "play" : "pause");
+                refreshIcons();
+            }
+
+            toggleBtn.onclick = () => {
+                state.partnerSliderPaused = !state.partnerSliderPaused;
+                syncPauseState();
+            };
+
+            prevBtn.onclick = () => {
+                viewport.scrollBy({ left: -300, behavior: "smooth" });
+            };
+
+            nextBtn.onclick = () => {
+                viewport.scrollBy({ left: 300, behavior: "smooth" });
+            };
+
+            syncPauseState();
+        }
+
+        function renderInsights() {
+            const grid = document.getElementById("insights-grid");
+            grid.innerHTML = INSIGHTS_DATA.map(post => `
+                <article onclick="openInsightReaderModal('${post.id}')" class="triada-card cursor-pointer bg-softSurface hover:bg-surface border border-hairline hover:border-corpBlue/50 hover:shadow-corp rounded-xl overflow-hidden flex flex-col justify-between">
+                    <div>
+                        <div class="relative h-48 bg-mutedSurface overflow-hidden">
+                            <img
+                                data-src="${escapeHtml(post.imageUrl)}"
+                                data-fallback="${escapeHtml(post.fallbackUrl)}"
+                                data-label="${escapeHtml(post.category)}"
+                                alt="${escapeHtml(post.alt)}"
+                                class="triada-photo w-full h-full object-cover object-center"
+                            >
+                        </div>
+                        <div class="p-6 space-y-3">
+                            <div class="flex items-center justify-between gap-2 text-xs text-slateCorp">
+                                <span class="font-bold uppercase tracking-wider text-brass text-[11px]">${escapeHtml(post.category)}</span>
+                                <span>${escapeHtml(post.date)} · ${escapeHtml(post.readTime)}</span>
+                            </div>
+                            <h3 class="text-xl font-bold text-navy leading-snug">${escapeHtml(post.title)}</h3>
+                            <p class="text-sm text-bodyGray leading-relaxed">${escapeHtml(post.excerpt)}</p>
+                        </div>
+                    </div>
+
+                    <div class="px-6 pb-6 pt-4 border-t border-hairline flex items-center justify-between text-xs">
+                        <span class="text-slateCorp truncate pr-2">${escapeHtml(post.author.split("·")[0].trim())}</span>
+                        <span class="font-bold text-corpBlue inline-flex items-center gap-1 shrink-0">
+                            <span>Leer informe</span>
+                            <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+                        </span>
+                    </div>
+                </article>
+            `).join("");
+
+            hydrateAllFallbackImages(grid);
+            refreshIcons();
+        }
+
+        function renderLeadershipAndOffices() {
+            const leadersGrid = document.getElementById("leadership-grid");
+            leadersGrid.innerHTML = LEADERSHIP_DATA.map(leader => `
+                <article class="triada-card bg-surface border border-hairline rounded-xl overflow-hidden flex flex-col justify-between shadow-corp">
+                    <div>
+                        <div class="relative h-64 bg-mutedSurface overflow-hidden">
+                            <img
+                                data-src="${escapeHtml(leader.imageUrl)}"
+                                data-fallback="${escapeHtml(leader.fallbackUrl)}"
+                                data-label="${escapeHtml(leader.name)}"
+                                alt="${escapeHtml(leader.alt)}"
+                                class="triada-photo w-full h-full object-cover object-top"
+                            >
+                        </div>
+                        <div class="p-6 space-y-2.5">
+                            <h3 class="text-xl font-bold text-navy">${escapeHtml(leader.name)}</h3>
+                            <p class="text-xs font-bold text-corpBlue">${escapeHtml(leader.role)}</p>
+                            <p class="text-sm text-bodyGray leading-relaxed pt-1">${escapeHtml(leader.bio)}</p>
+                        </div>
+                    </div>
+                    <div class="px-6 pb-6 pt-4 border-t border-hairline text-xs font-medium text-slateCorp">
+                        ${escapeHtml(leader.credentials)}
+                    </div>
+                </article>
+            `).join("");
+
+            const officesGrid = document.getElementById("offices-grid");
+            officesGrid.innerHTML = OFFICES_DATA.map(off => `
+                <article class="bg-surface border border-hairline rounded-xl overflow-hidden grid grid-cols-1 sm:grid-cols-12 shadow-corp">
+                    <div class="sm:col-span-5 relative h-52 sm:h-auto bg-mutedSurface overflow-hidden">
+                        <img
+                            data-src="${escapeHtml(off.imageUrl)}"
+                            data-fallback="${escapeHtml(off.fallbackUrl)}"
+                            data-label="${escapeHtml(off.city)}"
+                            alt="${escapeHtml(off.alt)}"
+                            class="w-full h-full object-cover object-center"
+                        >
+                    </div>
+                    <div class="sm:col-span-7 p-6 flex flex-col justify-between space-y-4">
+                        <div class="space-y-1.5">
+                            <span class="text-[11px] font-bold uppercase tracking-wider text-brass">${escapeHtml(off.subtitle)}</span>
+                            <h3 class="text-2xl font-bold text-navy">${escapeHtml(off.city)}</h3>
+                            <p class="text-xs font-semibold text-slateCorp">${escapeHtml(off.address)}</p>
+                            <p class="text-xs text-slateCorp">${escapeHtml(off.phone)}</p>
+                        </div>
+                        <p class="text-sm text-bodyGray leading-relaxed pt-2 border-t border-hairline">
+                            ${escapeHtml(off.focus)}
+                        </p>
+                    </div>
+                </article>
+            `).join("");
+
+            hydrateAllFallbackImages(leadersGrid);
+            hydrateAllFallbackImages(officesGrid);
+        }
+
+        // ==================== MODALES ====================
+        function openModal(modalEl) {
+            if (!modalEl) return;
+            modalEl.classList.remove("hidden");
+            modalEl.classList.add("flex");
+            requestAnimationFrame(() => modalEl.classList.remove("opacity-0"));
+            document.body.style.overflow = "hidden";
+            refreshIcons();
+        }
+
+        function closeModal(modalEl) {
+            if (!modalEl) return;
+            modalEl.classList.add("opacity-0");
+            setTimeout(() => {
+                modalEl.classList.add("hidden");
+                modalEl.classList.remove("flex");
+                document.body.style.overflow = "";
+            }, 180);
+        }
+
+        // Modal Caso Sectorial
+        const sectorModal = document.getElementById("sector-case-modal");
+        let activeSectorCase = null;
+
+        function openSectorCaseModal(caseId) {
+            const item = SECTOR_SOLUTIONS_DATA.find(s => s.id === caseId) || SECTOR_SOLUTIONS_DATA[0];
+            activeSectorCase = item;
+
+            document.getElementById("scm-sector").textContent = item.sector;
+            document.getElementById("scm-regulation").textContent = item.regulation;
+            document.getElementById("scm-title").textContent = item.title;
+            document.getElementById("scm-client").textContent = item.client;
+            document.getElementById("scm-metric").textContent = item.metric;
+            document.getElementById("scm-metric-label").textContent = item.metricLabel;
+            document.getElementById("scm-context").textContent = item.context;
+            document.getElementById("scm-solution").textContent = item.solution;
+            document.getElementById("scm-impact").textContent = item.impact;
+
+            const img = document.getElementById("scm-img");
+            img.classList.remove("hidden");
+            const existingFallback = img.parentElement.querySelector(".img-clean-fallback");
+            if (existingFallback) existingFallback.remove();
+            attachImageFallback(img, item.imageUrl, item.fallbackUrl, item.sector);
+
+            openModal(sectorModal);
+        }
+
+        document.getElementById("close-scm").addEventListener("click", () => closeModal(sectorModal));
+        sectorModal.addEventListener("click", e => { if (e.target === sectorModal) closeModal(sectorModal); });
+        document.getElementById("scm-contact-btn").addEventListener("click", () => {
+            const title = activeSectorCase ? activeSectorCase.title : "solución sectorial";
+            closeModal(sectorModal);
+            setTimeout(() => prefillContactArea("Soluciones por Sector", `Solicito información sobre el caso: ${title}.`), 200);
+        });
+
+        // Modal Informe Completo
+        const insightModal = document.getElementById("insight-reader-modal");
+        let activeInsightPost = null;
+
+        function openInsightReaderModal(postId) {
+            const post = INSIGHTS_DATA.find(p => p.id === postId);
+            if (!post) return;
+            activeInsightPost = post;
+
+            document.getElementById("irm-category").textContent = post.category;
+            document.getElementById("irm-date").textContent = post.date;
+            document.getElementById("irm-readtime").textContent = post.readTime;
+            document.getElementById("irm-title").textContent = post.title;
+            document.getElementById("irm-author").textContent = post.author;
+            document.getElementById("irm-body").innerHTML = post.paragraphs
+                .map(p => `<p>${escapeHtml(p)}</p>`)
+                .join("");
+
+            const img = document.getElementById("irm-img");
+            img.classList.remove("hidden");
+            const existingFallback = img.parentElement.querySelector(".img-clean-fallback");
+            if (existingFallback) existingFallback.remove();
+            attachImageFallback(img, post.imageUrl, post.fallbackUrl, post.category);
+
+            openModal(insightModal);
+        }
+
+        document.getElementById("close-irm").addEventListener("click", () => closeModal(insightModal));
+        insightModal.addEventListener("click", e => { if (e.target === insightModal) closeModal(insightModal); });
+        document.getElementById("irm-contact-btn").addEventListener("click", () => {
+            const title = activeInsightPost ? activeInsightPost.title : "informe";
+            closeModal(insightModal);
+            setTimeout(() => prefillContactArea("Informes y Colaboración", `Consulta sobre el informe: ${title}.`), 200);
+        });
+
+        // Modal Legal
+        const legalModal = document.getElementById("legal-info-modal");
+        const LEGAL_ITEMS = {
+            privacidad: {
+                title: "Política de Privacidad",
+                body: "<p>Bastión Digital Consultoría y Tecnología S.L. trata los datos facilitados en el formulario con el fin exclusivo de responder a consultas profesionales, proyectos de diseño y desarrollo web o propuestas de colaboración.</p><p>Puede ejercer sus derechos de acceso, rectificación y supresión escribiendo a contacto@bastiondigital.es.</p>"
+            },
+            terminos: {
+                title: "Términos de Uso",
+                body: "<p>Los contenidos, informes y métricas de este sitio de Bastión Digital tienen carácter informativo y orientativo. Los términos de cada servicio de consultoría o desarrollo web se rigen por el acuerdo formal correspondiente.</p>"
+            },
+            cookies: {
+                title: "Política de Cookies",
+                body: "<p>Esta página de Bastión Digital utiliza recursos técnicos esenciales para su funcionamiento interactivo y visualización adaptativa sin requerir cookies publicitarias.</p>"
+            }
+        };
+
+        document.querySelectorAll(".legal-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                const doc = LEGAL_ITEMS[btn.dataset.legal] || LEGAL_ITEMS.privacidad;
+                document.getElementById("lim-title").textContent = doc.title;
+                document.getElementById("lim-body").innerHTML = doc.body;
+                openModal(legalModal);
+            });
+        });
+
+        document.getElementById("close-lim").addEventListener("click", () => closeModal(legalModal));
+        document.getElementById("accept-lim").addEventListener("click", () => closeModal(legalModal));
+        legalModal.addEventListener("click", e => { if (e.target === legalModal) closeModal(legalModal); });
+
+        document.addEventListener("keydown", e => {
+            if (e.key === "Escape") {
+                [sectorModal, insightModal, legalModal].forEach(m => {
+                    if (!m.classList.contains("hidden")) closeModal(m);
+                });
+            }
+        });
+
+        // ==================== FORMULARIO, COPIADO Y NAVEGACIÓN MÓVIL ====================
+        function prefillContactArea(areaValue, prefillText = "") {
+            const select = document.getElementById("f-area");
+            const textarea = document.getElementById("f-message");
+            const exists = Array.from(select.options).some(opt => opt.value === areaValue);
+            if (exists) select.value = areaValue;
+            if (prefillText && !textarea.value.trim()) {
+                textarea.value = prefillText;
+            }
+            document.getElementById("contacto").scrollIntoView({ behavior: "smooth" });
+            setTimeout(() => textarea.focus(), 450);
+        }
+
+        document.getElementById("copy-email-btn").addEventListener("click", () => {
+            const emailAddr = document.getElementById("contact-email-label").textContent.trim();
+            const helper = document.createElement("input");
+            helper.value = emailAddr;
+            document.body.appendChild(helper);
+            helper.select();
+            document.execCommand("copy");
+            document.body.removeChild(helper);
+
+            document.getElementById("copy-email-text").textContent = "Copiado";
+            showToast(`Correo copiado: ${emailAddr}`);
+            setTimeout(() => {
+                document.getElementById("copy-email-text").textContent = "Copiar";
+            }, 2200);
+        });
+
+        document.getElementById("corporate-form").addEventListener("submit", e => {
+            e.preventDefault();
+            const name = document.getElementById("f-name").value.trim();
+            const org = document.getElementById("f-org").value.trim();
+            const email = document.getElementById("f-email").value.trim();
+            const area = document.getElementById("f-area").value;
+            const message = document.getElementById("f-message").value.trim();
+            const errorBox = document.getElementById("form-validation-error");
+            const successBox = document.getElementById("form-confirmation-box");
+
+            if (!name || !org || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) || !message) {
+                successBox.classList.add("hidden");
+                errorBox.classList.remove("hidden");
+                return;
+            }
+
+            errorBox.classList.add("hidden");
+            document.getElementById("form-confirmation-detail").textContent =
+                `Gracias, ${name} (${org}). Hemos registrado su consulta sobre «${area}» y responderemos a ${email}.`;
+            successBox.classList.remove("hidden");
+            e.target.reset();
+            refreshIcons();
+        });
+
+        const mobileToggle = document.getElementById("mobile-menu-toggle");
+        const mobilePanel = document.getElementById("mobile-menu-panel");
+        mobileToggle.addEventListener("click", () => {
+            const open = !mobilePanel.classList.contains("hidden");
+            mobilePanel.classList.toggle("hidden");
+            mobileToggle.setAttribute("aria-expanded", String(!open));
+        });
+        mobilePanel.querySelectorAll(".mobile-nav-link").forEach(link => {
+            link.addEventListener("click", () => {
+                mobilePanel.classList.add("hidden");
+                mobileToggle.setAttribute("aria-expanded", "false");
+            });
+        });
+
+        // ==================== ARRANQUE ====================
+        initHeroMedia();
+        renderImpactMetrics();
+        renderPartnerSlider();
+        renderSectorFilters();
+        renderSectorSolutions();
+        renderCapabilities();
+        renderAlliances();
+        renderInsights();
+        renderLeadershipAndOffices();
+        refreshIcons();
+    </script>
+</body>
+</html>
